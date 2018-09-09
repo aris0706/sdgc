@@ -1,7 +1,7 @@
 <!-- Title Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('title', 'Title:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('title', null, ['class' => 'form-control','class' => 'description']) !!}
 </div>
 
 <!-- Submit Field -->
