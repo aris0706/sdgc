@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class Child02Controller extends AppBaseController
 {
@@ -43,7 +44,12 @@ class Child02Controller extends AppBaseController
      */
     public function create()
     {
-        return view('child02s.create');
+        $child01 = DB::table('child01')
+        ->select('id','title')
+        ->get();
+        return view('child02s.create')
+        ->with(['child01'=>$child01]);
+ 
     }
 
     /**
@@ -100,8 +106,10 @@ class Child02Controller extends AppBaseController
 
             return redirect(route('child02s.index'));
         }
-
-        return view('child02s.edit')->with('child02', $child02);
+        $child01 = DB::table('child01')
+        ->select('id','title')
+        ->get();
+        return view('child02s.edit')->with(['child02'=>$child02,'child01'=>$child01]);
     }
 
     /**
@@ -146,10 +154,22 @@ class Child02Controller extends AppBaseController
             return redirect(route('child02s.index'));
         }
 
-        $this->child02Repository->delete($id);
+        $data = DB::table('child03')
+            ->select('child03.title')
+            ->where('child03.id','=',$id)
+            ->get();
 
-        Flash::success('Child02 deleted successfully.');
+        if (count($data)>0) {
+            Flash::error('data tidak bisa dihapus karna sudah ada');
 
-        return redirect(route('child02s.index'));
+            return redirect(route('child02s.index'));
+        }else{
+
+            $this->child02Repository->delete($id);
+
+            Flash::success('Child02 deleted successfully.');
+
+            return redirect(route('child02s.index'));
+        }
     }
 }

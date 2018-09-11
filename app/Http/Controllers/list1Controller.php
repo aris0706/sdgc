@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class list1Controller extends AppBaseController
 {
@@ -139,17 +140,31 @@ class list1Controller extends AppBaseController
     public function destroy($id)
     {
         $list1 = $this->list1Repository->findWithoutFail($id);
-
-        if (empty($list1)) {
+        
+        if (empty($list1)) 
+        {
             Flash::error('List1 not found');
 
             return redirect(route('list1s.index'));
         }
 
-        $this->list1Repository->delete($id);
+        $data = DB::table('child01')
+                    ->select('child01.title')
+                    ->where('child01.id','=',$id)
+                    ->get();
+        // dd(count($data));
+        if(count($data)>0) 
+        {
+             Flash::error('data tidak bisa dihapus karna sudah ada');
 
-        Flash::success('List1 deleted successfully.');
+            return redirect(route('list1s.index'));
 
-        return redirect(route('list1s.index'));
-    }
+        }else{
+         $this->list1Repository->delete($id);
+
+            Flash::success('List1 deleted successfully.');
+
+            return redirect(route('list1s.index'));
+        }
+   }
 }

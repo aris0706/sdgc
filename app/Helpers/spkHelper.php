@@ -135,7 +135,8 @@ class spkHelper{
         return $data[0]->jam;
     }
 
-    public static function list($id){
+//yang dipakai yang ini
+    public static function list01($id){
         $data = DB::table('list1')
             ->select('list1.title')
             ->where('list1.id','=',$id)
@@ -143,6 +144,23 @@ class spkHelper{
         return $data[0]->title;
     }
 
+    public static function child01($id){
+        $data = DB::table('child01')
+            ->select('child01.title')
+            ->where('child01.id','=',$id)
+            ->get();
+        return $data[0]->title;
+    }
+
+    public static function child02($id){
+        $data = DB::table('child02')
+            ->select('child02.title')
+            ->where('child02.id','=',$id)
+            ->get();
+        return $data[0]->title;
+    }
+
+//sampai tanda ini broo...
 
 
 

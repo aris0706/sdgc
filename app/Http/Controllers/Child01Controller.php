@@ -153,10 +153,23 @@ class Child01Controller extends AppBaseController
             return redirect(route('child01s.index'));
         }
 
-        $this->child01Repository->delete($id);
+        $data = DB::table('child02')
+            ->select('child02.title')
+            ->where('child02.id','=',$id)
+            ->get();
+        //dd(count($data));
+        if (count($data)>0) {
+            Flash::error('data tidak bisa dihapus karna sudah ada'); 
 
-        Flash::success('Child01 deleted successfully.');
+            return redirect(route('child01s.index'));
 
-        return redirect(route('child01s.index'));
+        }else{
+            $this->child01Repository->delete($id);
+
+            Flash::success('Child01 deleted successfully.');
+
+            return redirect(route('child01s.index'));    
+        }
+        
     }
 }

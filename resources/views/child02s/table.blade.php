@@ -1,13 +1,15 @@
 <table class="table table-responsive" id="child02s-table">
     <thead>
-        <th>Id Child01</th>
+        <th>Id Target</th>
         <th>Title</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($child02s as $child02)
         <tr>
-            <td>{!! $child02->id_child01 !!}</td>
+            <td>{!! $child02->id_child01 !!}
+            {!! App\Helpers\spkHelper::child01($child02->id_child01) !!}
+            </td>
             <td>{!! $child02->title !!}</td>
             <td>
                 {!! Form::open(['route' => ['child02s.destroy', $child02->id], 'method' => 'delete']) !!}

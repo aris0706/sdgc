@@ -8,7 +8,7 @@
     @foreach($child01s as $child01)
         <tr>
             <td>{!! $child01->id_list1 !!}
-            {!! App\Helpers\spkHelper::list($child01->id_list1) !!}
+            {!! App\Helpers\spkHelper::list01($child01->id_list1) !!}
             </td>
             <td>{!! $child01->title !!}</td>
             <td>

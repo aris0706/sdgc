@@ -1,7 +1,18 @@
 <!-- Id Child02 Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_child02', 'Id Child02:') !!}
-    {!! Form::text('id_child02', null, ['class' => 'form-control']) !!}
+    {!! Form::label('title', 'Id Indikator:') !!}
+    <select name="id_child02" class="form-control">
+    @if(Request::segment(3)=="edit")
+    	<option value="{{$child03->id_child02}}">
+    		{!! App\Helpers\spkHelper::child02($child03->id_child02) !!}
+    	</option>
+    @else
+    <option value=""></option>
+    @endif
+    	@foreach($child02 as $item)
+    	<option value="{{$item->id}}">{{$item->title}}</option>
+    	@endforeach
+    </select>
 </div>
 
 <!-- Title Field -->

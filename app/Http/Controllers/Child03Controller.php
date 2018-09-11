@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class Child03Controller extends AppBaseController
 {
@@ -43,7 +44,12 @@ class Child03Controller extends AppBaseController
      */
     public function create()
     {
-        return view('child03s.create');
+        $child02 = DB::table('child02')
+        ->select('id','title')
+        ->get();
+        return view('child03s.create')
+        ->with(['child02'=>$child02]);
+
     }
 
     /**
@@ -100,8 +106,10 @@ class Child03Controller extends AppBaseController
 
             return redirect(route('child03s.index'));
         }
-
-        return view('child03s.edit')->with('child03', $child03);
+        $child02 = DB::table('child02')
+        ->select('id','title')
+        ->get();
+        return view('child03s.edit')->with(['child03'=>$child03,'child02'=>$child02]);
     }
 
     /**
