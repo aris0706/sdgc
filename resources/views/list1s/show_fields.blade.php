@@ -10,6 +10,12 @@
     <p>{!! $list1->title !!}</p>
 </div>
 
+<!-- subTitle Field -->
+<div class="form-group">
+    {!! Form::label('title', 'Subtitle:') !!}
+    <p>{!! $list1->subtitle !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

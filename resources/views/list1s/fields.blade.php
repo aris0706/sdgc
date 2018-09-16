@@ -1,7 +1,13 @@
 <!-- Title Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('title', 'Title:') !!}
-    {!! Form::textarea('title', null, ['class' => 'form-control','class' => 'description']) !!}
+    {!! Form::textarea('title', null, ['class' => 'ckeditor','id'=>'ckeditor']) !!}
+</div>
+
+<!-- subTitle Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('subtitle', 'Subtitle:') !!}
+    {!! Form::text('subtitle', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

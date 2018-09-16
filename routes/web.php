@@ -20,6 +20,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('ckeditor-demo',function(){
+       return view('ckeditor.index');
+});
+
 
 
 Route::resource('list1s', 'list1Controller');

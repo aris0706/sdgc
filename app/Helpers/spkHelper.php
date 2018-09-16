@@ -136,9 +136,9 @@ class spkHelper{
     }
 
 //yang dipakai yang ini
-    public static function list01($id){
+    public static function idList($id){
         $data = DB::table('list1')
-            ->select('list1.title')
+            ->select('list1.title.subtitle')
             ->where('list1.id','=',$id)
             ->get();
         return $data[0]->title;

@@ -15,7 +15,8 @@ class list1 extends Model
     public $table = 'list1';
 
     public $fillable = [
-        'title'
+        'title',
+        'subtitle'
     ];
 
     /**
